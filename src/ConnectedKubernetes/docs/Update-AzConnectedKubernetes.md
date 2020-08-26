@@ -8,7 +8,7 @@ schema: 2.0.0
 # Update-AzConnectedKubernetes
 
 ## SYNOPSIS
-API to update certain properties of the connected cluster resource
+API to update certain properties of the connected cluster resource.
 
 ## SYNTAX
 
@@ -25,7 +25,7 @@ Update-AzConnectedKubernetes -InputObject <IConnectedKubernetesIdentity> [-Tag <
 ```
 
 ## DESCRIPTION
-API to update certain properties of the connected cluster resource
+API to update certain properties of the connected cluster resource.
 
 ## EXAMPLES
 

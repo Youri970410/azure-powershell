@@ -55,7 +55,7 @@ key1    DdsyaaHsdasd46asd8Bw4Mnd
 key2    eu9kx94TKH506R0i4JhYBmsx
 ```
 
-This command regenerates Api keys for a blockchain member using input object.
+This command regenerates Api keys for a blockchain member using identity.
 
 ## PARAMETERS
 

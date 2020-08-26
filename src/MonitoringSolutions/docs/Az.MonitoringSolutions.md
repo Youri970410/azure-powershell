@@ -1,6 +1,6 @@
 ---
 Module Name: Az.MonitoringSolutions
-Module Guid: ea677a1c-aecd-4441-8953-7881b5cfc8a6
+Module Guid: 5b66d321-7c86-43de-a9e7-09e3f36874d6
 Download Help Link: https://docs.microsoft.com/en-us/powershell/module/az.monitoringsolutions
 Help Version: 1.0.0.0
 Locale: en-US
