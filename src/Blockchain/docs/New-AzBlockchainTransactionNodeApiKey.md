@@ -55,7 +55,7 @@ key1    0-UCaNSNfS0lwRKRyv09sgb-
 key2    0Prk4Dl3lsOKdhyPEFQ-AnQb
 ```
 
-This command generates Api keys for a transaction node.
+This command generates Api keys for a transaction node using idenity.
 
 ## PARAMETERS
 

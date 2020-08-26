@@ -1,6 +1,6 @@
 ---
 Module Name: Az.DesktopVirtualization
-Module Guid: 8c805a66-b0df-4309-9c7a-2f103389f17b
+Module Guid: ff9db36c-d41b-4161-9fb4-20fca08e347f
 Download Help Link: https://docs.microsoft.com/en-us/powershell/module/az.desktopvirtualization
 Help Version: 1.0.0.0
 Locale: en-US
