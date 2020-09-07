@@ -55,7 +55,7 @@ namespace Microsoft.Azure.Commands.Network
         public virtual string ResourceGroupName { get; set; }
 
         [Parameter(
-          Mandatory = false,
+          Mandatory = true,
           ValueFromPipelineByPropertyName = true,
           HelpMessage = "The private link resource type.",
           ParameterSetName = "ByResource")]

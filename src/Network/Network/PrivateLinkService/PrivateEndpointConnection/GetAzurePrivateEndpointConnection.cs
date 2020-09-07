@@ -59,10 +59,12 @@ namespace Microsoft.Azure.Commands.Network
                 this.Subscription = resourceIdentifier.Subscription;
                 this.PrivateLinkResourceType = resourceIdentifier.ResourceType;
                 this.ServiceName = resourceIdentifier.ResourceName;
+            }else
+            {
+                this.Subscription = DefaultProfile.DefaultContext.Subscription.Id;
             }
-
+            
             IPrivateLinkProvider provider = BuildProvider(this.Subscription, this.PrivateLinkResourceType);
-
             if (ShouldGetByName(this.ResourceGroupName, this.Name))
             {
                 var pec = provider.GetPrivateEndpointConnection(this.ResourceGroupName, this.ServiceName, this.Name);
