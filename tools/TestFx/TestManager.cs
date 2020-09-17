@@ -18,6 +18,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading;
 using Microsoft.Azure.Commands.Common.Authentication;
 using Microsoft.Azure.Commands.Common.Authentication.Abstractions;
 using Microsoft.Azure.Commands.Common.Authentication.Models;
@@ -26,6 +27,7 @@ using Microsoft.Azure.ServiceManagement.Common.Models;
 using Microsoft.Azure.Test.HttpRecorder;
 using Microsoft.Rest.ClientRuntime.Azure.TestFramework;
 using Microsoft.WindowsAzure.Commands.ScenarioTest;
+using NJsonSchema.Infrastructure;
 using Xunit.Abstractions;
 
 namespace Microsoft.Azure.Commands.TestFx
@@ -347,6 +349,8 @@ namespace Microsoft.Azure.Commands.TestFx
                 {
                     clients.Add(client(context));
                 }
+                //var versionValue =clients[0].GetType().GetProperty("ApiVersion");
+                //versionValue.SetValue(clients[0],"2020-06-01");
                 Helper.SetupManagementClients(clients.ToArray());
             }
         }

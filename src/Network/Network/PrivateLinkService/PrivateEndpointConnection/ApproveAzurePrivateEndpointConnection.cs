@@ -58,7 +58,6 @@ namespace Microsoft.Azure.Commands.Network
             var pec = provider.UpdatePrivateEndpointConnectionStatus(this.ResourceGroupName, this.ServiceName, this.Name, "Approved", this.Description);
             WriteObject(pec);
 
-
         }
     }
 }

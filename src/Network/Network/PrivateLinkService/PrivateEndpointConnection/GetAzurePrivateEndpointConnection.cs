@@ -17,13 +17,15 @@ using Microsoft.Azure.Management.Internal.Resources.Utilities.Models;
 using Microsoft.WindowsAzure.Commands.Common.CustomAttributes;
 using Microsoft.WindowsAzure.Commands.Utilities.Common;
 using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Management.Automation;
+using System.Management.Automation.Language;
 
 namespace Microsoft.Azure.Commands.Network
 {
     [Cmdlet(VerbsCommon.Get, ResourceManager.Common.AzureRMConstants.AzureRMPrefix + "PrivateEndpointConnection", DefaultParameterSetName = "ByResourceId"), OutputType(typeof(PSPrivateEndpointConnection))]
-    public class GetAzurePrivateEndpointConnection : PrivateEndpointConnectionBaseCmdlet
+    public class GetAzurePrivateEndpointConnection : PrivateEndpointConnectionBaseCmdlet, IDynamicParameters
     {
         [Parameter(
             Mandatory = true,
@@ -31,7 +33,6 @@ namespace Microsoft.Azure.Commands.Network
             ValueFromPipelineByPropertyName = true)]
         [ValidateNotNullOrEmpty]
         public string PrivateLinkResourceId { get; set; }
-
         [CmdletParameterBreakingChange("Description", ChangeDescription = "Parameter is being deprecated without being replaced")]
         [Parameter(
             Mandatory = false,
@@ -62,6 +63,7 @@ namespace Microsoft.Azure.Commands.Network
             }else
             {
                 this.Subscription = DefaultProfile.DefaultContext.Subscription.Id;
+                this.PrivateLinkResourceType = DynamicParameters["PrivateLinkResourceType"].Value as string;
             }
             
             IPrivateLinkProvider provider = BuildProvider(this.Subscription, this.PrivateLinkResourceType);

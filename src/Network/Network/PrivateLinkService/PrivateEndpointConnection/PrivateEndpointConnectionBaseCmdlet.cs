@@ -12,13 +12,17 @@
 // limitations under the License.
 // ----------------------------------------------------------------------------------
 
+using System;
+using System.Collections.ObjectModel;
 using Microsoft.Azure.Commands.Network.PrivateLinkService.PrivateLinkServiceProvider;
 using Microsoft.Azure.Commands.ResourceManager.Common.ArgumentCompleters;
 using System.Management.Automation;
+using System.Linq;
+using Microsoft.WindowsAzure.Commands.Utilities.Common;
 
 namespace Microsoft.Azure.Commands.Network
 {
-    public abstract class PrivateEndpointConnectionBaseCmdlet : NetworkBaseCmdlet
+    public abstract class PrivateEndpointConnectionBaseCmdlet : NetworkBaseCmdlet, IDynamicParameters
     {
         [Parameter(
             Mandatory = true,
@@ -38,14 +42,6 @@ namespace Microsoft.Azure.Commands.Network
         public virtual string Name { get; set; }
 
         [Parameter(
-           Mandatory = true,
-           ValueFromPipelineByPropertyName = true,
-           HelpMessage = "The private link service name.",
-           ParameterSetName = "ByResource")]
-        [ValidateNotNullOrEmpty]
-        public string ServiceName { get; set; }
-
-        [Parameter(
             Mandatory = true,
             ValueFromPipelineByPropertyName = true,
             HelpMessage = "The resource group name.",
@@ -55,11 +51,35 @@ namespace Microsoft.Azure.Commands.Network
         public virtual string ResourceGroupName { get; set; }
 
         [Parameter(
-          Mandatory = true,
-          ValueFromPipelineByPropertyName = true,
-          HelpMessage = "The private link resource type.",
-          ParameterSetName = "ByResource")]
+           Mandatory = true,
+           ValueFromPipelineByPropertyName = true,
+           HelpMessage = "The private link service name.",
+           ParameterSetName = "ByResource")]
+        [ValidateNotNullOrEmpty]
+        public string ServiceName { get; set; }
+
+        protected RuntimeDefinedParameterDictionary DynamicParameters;
+
+        string NamedContextParameterSet = "ByResource";
+        public object GetDynamicParameters()
+        {
+            var parameters = new RuntimeDefinedParameterDictionary();
+            RuntimeDefinedParameter namedParameter;
+            if (ProviderConfiguration.TryGetProvideServiceParameter("PrivateLinkResourceType", NamedContextParameterSet, out namedParameter))
+            {
+                parameters.Add("PrivateLinkResourceType", namedParameter);
+            }
+            DynamicParameters = parameters;
+            return parameters;
+        }
+
         public string PrivateLinkResourceType { get; set; }
+        //[Parameter(
+        //  Mandatory = false,
+        //  ValueFromPipelineByPropertyName = false,
+        //  HelpMessage = "The private link resource type.",
+        //  ParameterSetName = "ByResource")]
+        //public string PrivateLinkResourceType { get; set; }
 
         public string Subscription { get; set; }
 
@@ -67,5 +87,6 @@ namespace Microsoft.Azure.Commands.Network
         {
             return PrivateLinkProviderFactory.CreatePrivateLinkProvder(this, subscription, privateLinkResourceType);
         }
+
     }
 }

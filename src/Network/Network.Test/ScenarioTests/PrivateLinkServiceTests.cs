@@ -13,6 +13,7 @@
 // ----------------------------------------------------------------------------------
 
 using Microsoft.Azure.Commands.Network.Test.ScenarioTests;
+using Microsoft.Azure.Commands.TestFx;
 using Microsoft.WindowsAzure.Commands.ScenarioTest;
 using Xunit;
 
@@ -47,6 +48,14 @@ namespace Commands.Network.Test.ScenarioTests
         public void TestStoragePrivateEndpoint()
         {
             TestRunner.RunTestScript("Test-StoragePrivateEndpoint");
+        }
+
+        [Fact]
+        [Trait(Category.AcceptanceType, Category.CheckIn)]
+        [Trait(Category.Owner, NrpTeamAlias.sdnnrp)]
+        public void TestApplicationPrivateEndpoint()
+        {   
+            TestRunner.RunTestScript("Test-ApplicationPrivateEndpoint");
         }
     }
 }
